@@ -178,20 +178,51 @@ ul, ol { list-style: none; margin: 0; padding: 0; }
 .product__arrow { color: var(--orange); }
 
 /* ---------- Clientes ---------- */
-.clients { border-bottom: 1px solid var(--line); }
-.clients__inner { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); display: flex; flex-direction: column; gap: 32px; }
-.clients__grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr));
-  border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+.clients { border-bottom: 1px solid var(--line); padding: clamp(56px, 7vw, 96px) 0; overflow: hidden; }
+.clients__head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 12px 32px; flex-wrap: wrap; margin-bottom: 32px;
 }
+.clients__note { margin: 0; font-size: 15px; color: var(--body); }
+
+/* Infinite logo carousel: main.js clones the group so the loop is seamless
+   whatever the number of logos. */
+.marquee {
+  --tile-w: clamp(160px, 18vw, 220px);
+  display: flex;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee__group { display: flex; flex-shrink: 0; }
+.marquee.is-running .marquee__group { animation: marquee var(--duration, 40s) linear infinite; }
+.marquee:hover .marquee__group { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-100%); } }
+
 .client {
-  aspect-ratio: 2 / 1;
-  border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  width: var(--tile-w); aspect-ratio: 2 / 1; flex-shrink: 0;
+  border-right: 1px solid var(--line);
   display: flex; align-items: center; justify-content: center;
-  background: repeating-linear-gradient(135deg, var(--paper) 0 10px, var(--sand) 10px 20px);
+  padding: 6px 10px; /* the 400×200 logo canvas already has its own margin */
+  background: var(--paper);
+  transition: background .25s;
 }
+.client:hover { background: var(--sand); }
+.client img {
+  width: 100%; height: 100%; object-fit: contain;
+  filter: grayscale(1); opacity: .6;
+  transition: filter .25s, opacity .25s;
+}
+.client:hover img { filter: none; opacity: 1; }
+.client--placeholder { background: repeating-linear-gradient(135deg, var(--paper) 0 10px, var(--sand) 10px 20px); }
 .client .mono { font-size: 11px; color: var(--muted); }
-.client img { max-width: 70%; max-height: 55%; object-fit: contain; }
+
+/* Without motion, show the logos as a static wrapped row. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee { flex-wrap: wrap; -webkit-mask-image: none; mask-image: none; }
+  .marquee__group { flex-wrap: wrap; flex-shrink: 1; }
+  .marquee__group[aria-hidden] { display: none; }
+}
 
 /* ---------- Método ---------- */
 .metodo__title { margin-top: 24px; text-wrap: initial; }

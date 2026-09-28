@@ -75,4 +75,40 @@
   raf = requestAnimationFrame(loop);
 })();
 
+// Client logo carousel: repeat the logos until they fill the row, then add one
+// copy of the whole group so the CSS loop is seamless for any number of logos.
+(function () {
+  const marquee = document.querySelector("[data-marquee]");
+  if (!marquee) return;
+  const group = marquee.querySelector(".marquee__group");
+  const originals = Array.from(group.children);
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const SPEED = 45; // px per second
+  let lastWidth = 0;
+
+  const cloneItem = (el) => {
+    const c = el.cloneNode(true);
+    c.setAttribute("aria-hidden", "true");
+    return c;
+  };
+
+  const build = () => {
+    const width = marquee.clientWidth;
+    if (!originals.length || width === lastWidth) return;
+    lastWidth = width;
+    marquee.querySelectorAll(".marquee__group[aria-hidden]").forEach(g => g.remove());
+    group.replaceChildren(...originals);
+    if (reduce) return;
+    while (group.scrollWidth < width) originals.forEach(el => group.appendChild(cloneItem(el)));
+    const copy = group.cloneNode(true);
+    copy.setAttribute("aria-hidden", "true");
+    marquee.appendChild(copy);
+    marquee.style.setProperty("--duration", group.scrollWidth / SPEED + "s");
+    marquee.classList.add("is-running");
+  };
+
+  build();
+  new ResizeObserver(build).observe(marquee);
+})();
+
 document.getElementById("year").textContent = new Date().getFullYear();

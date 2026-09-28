@@ -118,19 +118,24 @@
     </section>
 
     <section id="clientes" class="section clients" data-screen-label="Clientes">
-      <div class="wrap clients__inner">
+      <div class="wrap clients__head">
         <span class="kicker mono">Clientes atendidos</span>
-        <!-- Substitua cada placeholder por <img src="logos/cliente.svg" alt="Nome do cliente"> -->
-        <div class="clients__grid">
-          <div class="client"><span class="mono">logo cliente 01</span></div>
-          <div class="client"><span class="mono">logo cliente 02</span></div>
-          <div class="client"><span class="mono">logo cliente 03</span></div>
-          <div class="client"><span class="mono">logo cliente 04</span></div>
-          <div class="client"><span class="mono">logo cliente 05</span></div>
-          <div class="client"><span class="mono">logo cliente 06</span></div>
-          <div class="client"><span class="mono">logo cliente 07</span></div>
-          <div class="client"><span class="mono">logo cliente 08</span></div>
-        </div>
+        <p class="clients__note">Empresas que confiam o Protheus e a operação à NyStart.</p>
+      </div>
+
+      <!--
+        Para adicionar um cliente: salve a logo em /logos (veja logos/LEIA-ME.md)
+        e acrescente uma linha abaixo. O carrossel se ajusta sozinho à quantidade.
+          <li class="client"><img src="logos/nome-do-cliente.png" alt="Nome do Cliente" loading="lazy"></li>
+        Quando tiver as logos reais, apague as linhas "client--placeholder".
+      -->
+      <div class="marquee" data-marquee>
+        <ul class="marquee__group">
+          <li class="client"><img src="logos/ar-logo.svg" alt="AR Corretora de Seguros" loading="lazy"></li>
+          <li class="client"><img src="logos/bf-logo.svg" alt="B&amp;F Móveis e Eletro" loading="lazy"></li>
+          <li class="client"><img src="logos/cj-logo.svg" alt="C&amp;J Corretora de Seguros" loading="lazy"></li>
+          <li class="client"><img src="logos/rl-logo.svg" alt="Grupo Empresarial RL Informática e Errele" loading="lazy"></li>
+        </ul>
       </div>
     </section>
 

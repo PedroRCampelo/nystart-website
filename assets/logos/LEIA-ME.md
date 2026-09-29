@@ -9,7 +9,7 @@ Coloque aqui as logos exibidas no carrossel "Clientes atendidos".
 | **Formato** | **SVG** (preferencial) ou **PNG com fundo transparente** |
 | **Tamanho (PNG)** | **400 × 200 px** (proporção 2:1) |
 | **Área da logo** | centralizada, ocupando até ~90% da largura **ou** ~70% da altura (o que atingir primeiro) |
-| **Fundo** | transparente — nada de fundo branco |
+| **Fundo** | transparente, sem fundo branco |
 | **Peso** | até ~100 KB por arquivo |
 | **Nome do arquivo** | minúsculas, sem acento nem espaço: `grupo-exemplo.png` |
 
@@ -22,14 +22,14 @@ horizontais encostam nas laterais; logos quadradas/altas encostam em cima e emba
 
 ## Como adicionar um cliente
 
-1. Salve o arquivo nesta pasta, ex.: `logos/grupo-exemplo.png`
+1. Salve o arquivo nesta pasta, ex.: `assets/logos/grupo-exemplo.png`
 2. Em `index.html`, na seção `#clientes`, acrescente uma linha dentro de `<ul class="marquee__group">`:
 
    ```html
-   <li class="client"><img src="logos/grupo-exemplo.png" alt="Grupo Exemplo" loading="lazy"></li>
+   <li class="client"><img src="assets/logos/grupo-exemplo.png" alt="Grupo Exemplo" loading="lazy"></li>
    ```
 
 3. Quando tiver as logos reais, apague as linhas com `client--placeholder`.
 
-Não é preciso mexer em mais nada — o carrossel se ajusta sozinho a qualquer
+Não é preciso mexer em mais nada: o carrossel se ajusta sozinho a qualquer
 quantidade de logos.

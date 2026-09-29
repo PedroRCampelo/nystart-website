@@ -111,4 +111,11 @@
   new ResizeObserver(build).observe(marquee);
 })();
 
+// Product screenshots not uploaded yet: hide the broken image, keep the placeholder.
+document.querySelectorAll(".product__shot img").forEach(img => {
+  const miss = () => img.classList.add("is-missing");
+  if (img.complete && !img.naturalWidth) miss();
+  else img.addEventListener("error", miss);
+});
+
 document.getElementById("year").textContent = new Date().getFullYear();

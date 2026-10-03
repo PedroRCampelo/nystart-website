@@ -1,0 +1,13 @@
+{
+  "name": "NyStart",
+  "short_name": "NyStart",
+  "description": "Consultoria TOTVS Protheus e desenvolvimento sob medida.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FAF6F1",
+  "theme_color": "#FF5B24",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

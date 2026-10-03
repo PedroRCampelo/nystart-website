@@ -1,0 +1,15 @@
+# Cabeçalhos HTTP aplicados pelo Cloudflare Pages.
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Imagens, ícones e fontes: cache de 7 dias no navegador.
+/assets/*
+  Cache-Control: public, max-age=604800
+
+# O endereço .pages.dev não deve aparecer no Google (o oficial é nystart.com.br).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
